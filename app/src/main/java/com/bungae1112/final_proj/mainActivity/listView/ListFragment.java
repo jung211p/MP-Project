@@ -48,8 +48,8 @@ public class ListFragment extends Fragment
         itemList = new ArrayList<ItemData>();
 
         // Test Data
-        itemList.add( new ItemData("test", "Orandakan", "restaurant", "20", "50") );
-        itemList.add( new ItemData("test", "Orandakan", "restaurant", "20", "50") );
+        itemList.add( new ItemData("test", "test", "restaurant", "20", "50") );
+        itemList.add( new ItemData("test", "compile", "Izakaya", "13", "61") );
     }
 
 }
