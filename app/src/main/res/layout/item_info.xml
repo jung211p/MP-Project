@@ -14,7 +14,7 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/imageView_Store"
+            android:id="@+id/itemInfo_img"
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -27,7 +27,7 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/StoreName"
+                android:id="@+id/itemInfo_storeName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/asdf"
@@ -43,7 +43,7 @@
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/editText_PhoneNum"
+                android:id="@+id/itemInfo_phoneNum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -51,7 +51,7 @@
                 android:fontFamily ="@font/asdf"/>
 
             <EditText
-                android:id="@+id/textView_Address"
+                android:id="@+id/itemInfo_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="주소"
@@ -118,23 +118,10 @@
                     android:layout_marginHorizontal="50dp"
                     >
 
-                    <LinearLayout
+                    <ListView
+                        android:id="@+id/item_ListView"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/textView_Menuitem"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="TextView" />
-
-                        <TextView
-                            android:id="@+id/textView4"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="TextView" />
-                    </LinearLayout>
+                        android:layout_height="wrap_content" />
                 </ScrollView>
             </FrameLayout>
 
