@@ -1,65 +1,51 @@
 package com.bungae1112.final_proj.mainActivity.itemView;
 
-import android.database.Cursor;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
+import android.widget.ListView;
 
 import com.bungae1112.final_proj.R;
+
+import java.util.ArrayList;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class itemView extends AppCompatActivity {
-
-
-    EditText itemInfo_StoreName = (EditText) findViewById(R.id.itemInfo_storeName);
-    EditText itemInfo_StoreAddress = (EditText) findViewById(R.id.itemInfo_address);
-    EditText itemInfo_StorePhoneNum = (EditText) findViewById(R.id.itemInfo_phoneNum);
-
-
+    EditText itemInfo_StoreName;
+    EditText itemInfo_StoreAddress;
+    EditText itemInfo_StorePhoneNum;
+    itemInfoAdapter adapter;
     item Store;
+
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.item_info);
+        ListView listView  = (ListView)findViewById(R.id.item_ListView);
 
-        Cursor cur;
+        itemInfo_StoreName = (EditText) findViewById(R.id.itemInfo_storeName);
+        itemInfo_StoreAddress = (EditText) findViewById(R.id.itemInfo_address);
+        itemInfo_StorePhoneNum = (EditText) findViewById(R.id.itemInfo_phoneNum);
+        final ArrayList<String> menuList = new ArrayList<>();
 
+        adapter = new itemInfoAdapter();
 
-        ImageView StoreImage = (ImageView) findViewById(R.id.itemInfo_img);
-        Button btnReservation = (Button) findViewById(R.id.btnReservation);
-        Button btnSeat = (Button) findViewById(R.id.btnSeat) ;
+        adapter.additem("test","test");
 
+        listView.setAdapter(adapter);
         //예약하기 클릭 시
-        btnReservation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-        });
 
-        //좌석 수 클릭 시
-        btnSeat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-        });
     }
-
+    //    정보 입력
     private void setInit(){
-        Store.inititem("덤");
         itemInfo_StoreName.setText(Store.getStoreName());
         itemInfo_StoreAddress.setText(Store.getStoreAddress());
         itemInfo_StorePhoneNum.setText(Store.getStorePhoneNum());
 
     }
-
-
-
-
 
 
 
