@@ -26,7 +26,7 @@ public class SignUp extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.sign_up);
 
         final RadioButton accept = (RadioButton)findViewById(R.id.radio_accept);
         final Button signUpButton = (Button) findViewById(R.id.btn_signUp);
