@@ -12,7 +12,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1">수
+        android:layout_weight="1">
 
         <TimePicker
             android:layout_width="wrap_content"
@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:layout_margin="10dp"
-            android:hint="예약자 "
+            android:hint="예약자 이름"
             android:inputType="number"
             android:ems="10"
             android:id="@+id/et_reservation_name"/>

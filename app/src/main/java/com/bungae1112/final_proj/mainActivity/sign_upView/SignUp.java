@@ -43,13 +43,11 @@ public class SignUp extends AppCompatActivity {
                     EditText et_name = (EditText) findViewById(R.id.et_name);
                     String name = et_name.getText().toString();
 
-                    EditText et_address = (EditText) findViewById(R.id.et_address);
-                    String address = et_address.getText().toString();
 
                     EditText et_phone = (EditText) findViewById(R.id.et_phone);
                     String phone = et_phone.getText().toString();
 
-                    SignUp(id, pw, name, address, phone);
+                    SignUp(id, pw, name, phone);
                 }else{
                     Toast.makeText(getApplicationContext(), "약관에 동의해야 가입하실 수 있습니다.", Toast.LENGTH_LONG).show();
                 }
@@ -58,8 +56,8 @@ public class SignUp extends AppCompatActivity {
     }
 
 
-    public boolean SignUp(String id, String password, String name, String address, String phone){
-        String tmp = password + "\n" + name + "\n" + address + "\n" + phone;
+    public boolean SignUp(String id, String password, String name, String phone){
+        String tmp = password + "\n" + name + "\n" + "\n" + phone;
         String pwPattern = "((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9가-힣]).{8,})";
         Matcher matcher = Pattern.compile(pwPattern).matcher(password);
 
@@ -90,11 +88,6 @@ public class SignUp extends AppCompatActivity {
             return false;
         }
 
-
-        if(address.length()<1){
-            Toast.makeText(getApplicationContext(), "주소을 입력해주세요.", Toast.LENGTH_LONG).show();
-            return false;
-        }
 
         if(phone.length()<1){
             Toast.makeText(getApplicationContext(), "전화번호를 입력해주세요.", Toast.LENGTH_LONG).show();
