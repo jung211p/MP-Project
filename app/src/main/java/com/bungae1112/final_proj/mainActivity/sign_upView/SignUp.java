@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,17 +13,34 @@ import android.widget.Toast;
 
 import com.bungae1112.final_proj.R;
 import com.bungae1112.final_proj.mainActivity.MainActivity;
+import com.bungae1112.final_proj.mainActivity.reservationView.Reservation;
+
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SignUp extends AppCompatActivity {
+
+    private InputStream downloadUrl(final URL url) throws IOException {
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+        conn.setDoInput(true);
+        // Starts the query
+        conn.connect();
+        return conn.getInputStream();
+    }
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +74,7 @@ public class SignUp extends AppCompatActivity {
     }
 
 
-    public boolean SignUp(String id, String password, String name, String phone){
+    public boolean SignUp(final String id, final String password, String name, String phone){
         String tmp = password + "\n" + name + "\n" + "\n" + phone;
         String pwPattern = "((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9가-힣]).{8,})";
         Matcher matcher = Pattern.compile(pwPattern).matcher(password);
@@ -95,23 +113,63 @@ public class SignUp extends AppCompatActivity {
         }
 
         try{
-            FileOutputStream fos = openFileOutput(id, Context.MODE_PRIVATE);
+            // 회원가입 Method
+//            FileOutputStream fos = openFileOutput(id, Context.MODE_PRIVATE);
+//
+//
+//            PrintWriter writer = new PrintWriter(fos);
+//
+//            writer.print(tmp);
+//            writer.close();
 
+            Thread t = new Thread(new Runnable() { @Override public void run() {
+                try{
+                    Log.e("Register info", "http://54.180.153.64:3000/users/register?id="+id+"&pass="+password);
+                    InputStream is = downloadUrl(new URL("http://54.180.153.64:3000/users/register?id="+id+"&pass="+password));
 
-            PrintWriter writer = new PrintWriter(fos);
+                    StringBuffer sb = new StringBuffer();
+                    byte[] b = new byte[4096];
+                    for (int n; (n = is.read(b)) != -1;) {
+                        sb.append(new String(b, 0, n));
+                    }
+                    Log.e("tag", sb.toString());
+                    final String s = sb.toString();
 
-            writer.print(tmp);
-            writer.close();
+                    JSONObject jsonObject = new JSONObject(s);
 
-            Toast.makeText(getApplicationContext(), "회원가입되었습니다.", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    final String msg = jsonObject.getString("msg");
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
+
+                        }
+                    });
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }});
+
+            t.start();
+
+            Intent intent = new Intent(getApplicationContext(), Reservation.class);
             intent.putExtra("id", id);
             startActivity(intent);
-        } catch(FileNotFoundException e){
-            e.printStackTrace();
-
-            Toast.makeText(getApplicationContext(), "오류가 발생하였습니다.", Toast.LENGTH_LONG).show();
         }
+        catch (Exception e)
+        {
+            Log.e("Error", e.toString());
+        }
+//        catch(FileNotFoundException e){
+//            e.printStackTrace();
+//
+//            Toast.makeText(getApplicationContext(), "오류가 발생하였습니다.", Toast.LENGTH_LONG).show();
+//            return false;
+//        }
         return true;
     }
 
@@ -129,10 +187,6 @@ public class SignUp extends AppCompatActivity {
             e.printStackTrace();
         }
         return pass;
-    }
-
-    public Context getApplicationContext() {
-        return getApplicationContext();
     }
     //push test dd
 }

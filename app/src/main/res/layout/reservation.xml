@@ -1,72 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:context = ".SignUP">
+    tools:context = ".mainActivity.sign_upView.SignUp">
 
 
-
-
-    <LinearLayout
-        android:orientation="vertical"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1">
 
-        <TimePicker
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:headerBackground="#90C978"
-            android:numbersSelectorColor="#90C978"
-            android:layout_marginBottom="30dp"
-            android:id="@+id/timePicker1" />
 
-
-        <EditText
-            android:layout_height="wrap_content"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_margin="10dp"
-            android:hint="예약자 이름"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/et_reservation_name"/>
-
-
-        <EditText
             android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:layout_margin="10dp"
-            android:hint="예약 인원 "
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/et_reservation_number"/>
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-        <EditText
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:layout_margin="10dp"
-            android:hint="연락처"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/et_reservation_phone"/>
-
-        <Button
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:background="#90C978"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="30dp"
-            android:textSize="7.5pt"
-            android:textColor="#FFF"
-            android:id="@+id/btn_reservation"
-            android:text="예약하기"/>
+            <TimePicker
+                android:id="@+id/timePicker1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:headerBackground="#90C978"
+                android:numbersSelectorColor="#90C978" />
 
 
-    </LinearLayout>
+            <EditText
+                android:id="@+id/et_reservation_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:ems="10"
+                android:hint="예약자 이름"
+                android:inputType="number" />
 
 
+            <EditText
+                android:id="@+id/et_reservation_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:ems="10"
+                android:hint="예약 인원 "
+                android:inputType="number" />
 
+            <EditText
+                android:id="@+id/et_reservation_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:ems="10"
+                android:hint="연락처"
+                android:inputType="number" />
+
+            <Button
+                android:id="@+id/btn_reservation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:background="#90C978"
+                android:text="예약하기"
+                android:textColor="#FFF"
+                android:textSize="7.5pt" />
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
 
 
 </LinearLayout>
