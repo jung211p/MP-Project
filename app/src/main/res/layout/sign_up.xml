@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:layout_marginTop="40dp"
-                android:textColor="#228B22"
+                android:textColor="#90C978"
                 android:textAlignment="center"
 
                 android:text="2차고?! 회원가입"
@@ -107,7 +107,7 @@
                 <Button
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent"
-                    android:background="#228B22"
+                    android:background="#90C978"
                     android:layout_marginTop="30dp"
                     android:textSize="7.5pt"
                     android:textColor="#FFF"
